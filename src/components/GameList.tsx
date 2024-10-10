@@ -12,10 +12,10 @@ import GameListSkeleton from "./GameListSkeleton";
 
 interface Props {
   onSelectGenre: (genre: Genres) => void;
-  selectedGenre: Genres | null;
+  selectedGenreId?: number;
 }
 const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const GameList = ({ selectedGenre, onSelectGenre }: Props) => {
+const GameList = ({ selectedGenreId, onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -41,7 +41,7 @@ const GameList = ({ selectedGenre, onSelectGenre }: Props) => {
                 objectFit="cover"
               />
               <Button
-                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+                fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
                 onClick={() => onSelectGenre(genre)}
                 variant="link"
                 fontSize="lg"
